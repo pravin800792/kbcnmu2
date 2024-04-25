@@ -1,0 +1,126 @@
+#include<iostream.h>
+#include<conio.h>
+class NODE
+{
+   public:
+	int data;
+	NODE*link;
+};
+class STACK
+{
+	NODE*start;
+   public:
+	STACK();
+	void PUSH_104(int);
+	int POP_104();
+	int PEEP_104();
+	void VIEWALL_104();
+};
+STACK::STACK()
+{
+	start=NULL;
+}
+void STACK::PUSH_104(int ele)
+{
+	//step 1 create a new node
+	NODE *NN=new NODE();
+	//step 2 fill code
+	NN->data=ele;
+	NN->link=NULL;
+	//step 3 set links
+	if(start==NULL)
+	   start==NN;
+	else
+	{
+		NN->link=start;
+		start=NN;
+	}
+}
+int STACK::POP_104()
+{
+	if(start==NULL)
+	{
+		cout<<endl<<"list is empty";
+		return NULL;
+	}
+	else
+	{
+		int ele;
+		ele=start->data;
+		start=start->link;
+		return ele;
+	}
+}
+int STACK::PEEP_104()
+{
+	if(start==NULL)
+	{
+		cout<<endl<<"list is empty:";
+		return NULL;
+	}
+	else
+	{
+		return start->data;
+	}
+}
+void STACK::VIEWALL_104()
+{
+	if(start==NULL)
+      {
+		cout<<endl<<"list is empty";
+
+      }
+     	else
+	{
+		NODE *temp_ptr=start;
+		while(temp_ptr != NULL)
+		{
+			cout<<" "<<temp_ptr->data;
+			temp_ptr=temp_ptr->link;
+		}
+	}
+}
+void MENU()
+{
+	int option,ele;
+	STACK obj;
+	do
+	{
+		cout<<"\n select your option:";
+		cout<<"\n 1.PUSH_104()";
+		cout<<"\n 2.POP_104()";
+		cout<<"\n 3.PEEP_104()";
+		cout<<"\n 4.VIEWALL_104()";
+		cout<<"\n 5.EXIT";
+		cout<<"\n enter the option";
+		cin>>option;
+		switch(option)
+		{
+		case 1:
+			cout<<"enter the element:";
+			cin>>ele;
+			obj.PUSH_104(ele);
+			break;
+		case 2:
+			cout<<endl<<obj.POP_104()<<"deleted:";
+			break;
+		case 3:
+			cout<<endl<<obj.PEEP_104()<<"is the topmost element:";
+			break;
+		case 4:
+			cout<<endl<<"the stack element is:";
+			obj.VIEWALL_104();
+			break;
+		case 5:
+			return;
+			default:
+			cout<<endl<<"invalid choice:";
+		}
+	}while(1);
+}
+void main()
+{
+	clrscr();
+	MENU();
+	getch();
+}
